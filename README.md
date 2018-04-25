@@ -7,7 +7,55 @@
 2. Nodejs [Download Node](https://nodejs.org/en/download/)
 3. Git [Download git](https://git-scm.com/downloads)
 
-## Setup
+## Simple Team Build application using Vanilla JavaScript
+
+```
+<input type="text">
+<button>Add Team</button>
+
+<ul></ul>
+
+<script>
+	
+var inputEl = document.querySelector('input');
+var buttonEl = document.querySelector('button');
+var ulEl = document.querySelector('ul');
+
+var teams = [];
+
+buttonEl.addEventListener('click', addTeam);
+
+function addTeam() {
+	var userInput = inputEl.value;
+  if (userInput.trim() == '') {
+  	return;
+  }
+  var newTeam = { id: Math.random(), value: userInput };
+  teams.push(newTeam);
+	var teamLi = document.createElement('LI');
+  teamLi.textContent = userInput;
+  teamLi.addEventListener('click', removeTeam);
+  teamLi.dataset.id = newTeam.id;
+  ulEl.appendChild(teamLi);
+  console.log(teams);
+}
+
+function removeTeam(event) {
+	var clickedLi = event.target;
+  var itemId = clickedLi.dataset.id;
+  for (var i = 0; i < teams.length; i++) {
+  	if (teams[i].id == itemId) {
+    	teams.splice(i, 1);
+      break;
+    }
+  }
+  clickedLi.parentNode.removeChild(clickedLi);
+    console.log(teams);
+}
+</script>
+```
+
+## Setup For React
 ### Step 1 - React for react cli
 
 1. Install create-react-app globally `npm install -g create-react-app`
