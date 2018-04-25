@@ -41,6 +41,6 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators({addCharacterById}, dispatch)
 }
 
-//shot cut, remove mapDispatchToProps from connect and directly add addCharacterById as a object
+//short cut, remove mapDispatchToProps from connect and directly add addCharacterById as a object
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterList);
