@@ -1,5 +1,12 @@
 # Team Building App
  workshop repo
+
+## Helper Tools Links 
+
+1. VsCode [Download](https://code.visualstudio.com/download)
+2. Nodejs [Download Node](https://nodejs.org/en/download/)
+3. Git [Download git](https://git-scm.com/downloads)
+
 ## Setup
 ### Step 1 - React for react cli
 
@@ -242,7 +249,3 @@ case REMOVE_CHARACTOR:
     return characters;
 ```
 6. thn connect with HeroList component like we did before!
-
-
-
-
