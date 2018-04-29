@@ -140,12 +140,14 @@ Install git if you are not already instaled it
 1. remove existing `src`.
 2. Create src folder on root, then create assets, components, styles, data, web-services and index.js in src file root
 3. add this code snipts to the index.js this will render your application to the root div and then run it through terminal by using `npm start`
+
 ```
 import React from 'react'
 import ReactDOM from 'react-dom';
 
 ReactDOM.render(<h1>Hellow</h1>, document.getElementById('root'))
 ```
+
 4. and then craete `style.css` in style folder, ` App.js` in components folder and crete api.js file isde of web-services folder
 5. add this code snipts to `app.js`
 
@@ -161,6 +163,7 @@ class App extends Component {
     }
 }
 ```
+
 6. add these css to the use style.css
 
 ```
@@ -183,6 +186,7 @@ body {
     display: inline-block;
 }
 ```
+
 7. now import `app.js` into the index.js
 
 ```
@@ -220,6 +224,7 @@ export default {
 Now we can store characters data form api using `setState`
 
 11. lets get data into app.js using `componentDidMount` form react life-cycle, inside of `App.js`
+
 ```
 import api from '../web-services/api';
     ....
