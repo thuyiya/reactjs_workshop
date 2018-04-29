@@ -33,21 +33,52 @@ This repostory is contain every resources file that related to the session that 
 
 ## Simple Team Build application using Vanilla JavaScript
 
+1. create `index.html` , style.css and script.js file
+2. then add style.css and script.js file into the html file.
 ```
-<input type="text">
-<button>Add Team</button>
+<!DOCTYPE html>
+<html lang="en">
 
-<ul></ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <title>Team Build</title>
+</head>
 
-<script>
-	
+<body>
+  <div class="center-screen">
+    <input type="text" placeholder="Enter the character name">
+    <button class="btn" type="button">
+      <span>Add A Character</span>
+    </button>
+    <div class="results">
+      <ul></ul>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
+```
+
+3. in the `script.js` get ref for input, button and ul tag by calling DOM and also addEventListener to the button. 
+
+
+```
 var inputEl = document.querySelector('input');
 var buttonEl = document.querySelector('button');
 var ulEl = document.querySelector('ul');
 
-var teams = [];
-
 buttonEl.addEventListener('click', addTeam);
+```
+
+4. Then create two function for add and remove team members from the teams array
+
+```
+var teams = [];
 
 function addTeam() {
 	var userInput = inputEl.value;
@@ -76,8 +107,9 @@ function removeTeam(event) {
   clickedLi.parentNode.removeChild(clickedLi);
     console.log(teams);
 }
-</script>
 ```
+
+5. go and check style.css file in `with-pure-js`, if you need better style on the app.  
 
 ## Setup For React
 ### Step 1 - React for react cli
