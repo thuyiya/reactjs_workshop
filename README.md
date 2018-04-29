@@ -12,15 +12,15 @@ This repostory is contain every resources file that related to the session that 
 
 # Ref
 
-1. (NodeJS)[https://nodejs.org/en/]
-2. (Eslint)[https://eslint.org/]
-3. (Babel)[https://babeljs.io/]
-4. (Promises)[https://ponyfoo.com/articles/understanding-javascript-async-await]
-5. (Npm stats)[https://www.npmjs.com/npm/the-state-of-javascript-frameworks-2017-part-3-back-end-frameworks]
-6. (Pwa React)[https://preactjs.com/guide/progressive-web-apps]
-7. (Javascript frameworks)[http://www.dotnetcurry.com/javascript/1359/javascript-frameworks-aspnet-mvc-developer]
-8. (Reconciliation)[https://reactjs.org/docs/reconciliation.html]
-9. (Flex)[https://facebook.github.io/flux/docs/in-depth-overview.html]
+1. [NodeJS](https://nodejs.org/en/)
+2. [Eslint](https://eslint.org/)
+3. [Babel](https://babeljs.io/)
+4. [Promises](https://ponyfoo.com/articles/understanding-javascript-async-await)
+5. [Npm stats](https://www.npmjs.com/npm/the-state-of-javascript-frameworks-2017-part-3-back-end-frameworks)
+6. [Pwa React](https://preactjs.com/guide/progressive-web-apps)
+7. [Javascript frameworks](http://www.dotnetcurry.com/javascript/1359/javascript-frameworks-aspnet-mvc-developer)
+8. [Reconciliation](https://reactjs.org/docs/reconciliation.html)
+9. [Flex](https://facebook.github.io/flux/docs/in-depth-overview.html)
 
 
 
@@ -101,6 +101,289 @@ Install git if you are not already instaled it
 6. add chnage to git `git add .`
 7. commit the added chnages `git commit -m 'init'`
 8. push local changers to remote `git push origin master`
+
+---
+
+## Team Builder App Without Redux
+1. remove existing `src`.
+2. Create src folder on root, then create assets, components, styles, data, web-services and index.js in src file root
+3. add this code snipts to the index.js this will render your application to the root div and then run it through terminal by using `npm start`
+```
+import React from 'react'
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(<h1>Hellow</h1>, document.getElementById('root'))
+```
+4. and then craete `style.css` in style folder, ` App.js` in components folder and crete api.js file isde of web-services folder
+5. add this code snipts to `app.js`
+
+```
+import React, { Component } from 'react'
+import '../styles/index.css';
+
+class App extends Component {
+    render(){
+        return(
+            <h1>Hellow</h1>
+        )
+    }
+}
+```
+6. add these css to the use style.css
+
+```
+body {
+    background-color: #1abc9c;
+    height: 100%;
+}
+
+.App {
+    text-align: center;
+    padding: 5%;
+}
+
+.right-button {
+    cursor: pointer;
+    float: right;
+}
+
+.list-item {
+    display: inline-block;
+}
+```
+7. now import `app.js` into the index.js
+
+```
+...
+import App from './components/App';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+```
+
+8. now get the json file form resources folder and put it into the data folder that inside of src
+
+9. lets get data with the delay , fot that import characters.json form data file into api.js and esport them.
+
+```
+import _characters from '../data/characters.json';
+
+const TIMEOUT = 100;
+
+const characters = (cb, timeout) => setTimeout(() => cb(_characters), timeout || TIMEOUT);
+
+export default {
+    characters
+}
+```
+
+10. Befor get the characters from api we have to create varibale to store them, lest create state for that in `App.js`
+
+```
+ state = {
+        characters: [],
+    }
+```
+
+Now we can store characters data form api using `setState`
+
+11. lets get data into app.js using `componentDidMount` form react life-cycle, inside of `App.js`
+```
+import api from '../web-services/api';
+    ....
+
+    componentDidMount() {
+        api.characters(characters => {
+            this.setState({ characters: characters })
+        })
+    }
+
+    .....
+```
+
+12. print the `this.state.characters` inside of the render method to see the data.
+
+13. lets fixd our view for put these data into 3 separeate sections. one for Character List other two for Hero List and Stats List
+
+```
+            <div className="App">
+                <h2>Build Your Team</h2>
+                <div>
+                    <div>
+                        <h2>Character List</h2>
+                    </div>
+                    <div>
+                        <h2>Hero List</h2>
+                    </div>
+                    <div>
+                        <h4>Team Stats</h4>
+                    </div>
+                </div>
+            </div>
+```
+14. Lest Add bootstrap to your application goto the bootstrap web site and get the CDN link and then go to the public folder and add that link under head tag
+
+`<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">`
+
+15. Lets add put the three section into cols
+
+```
+    <div className="App">
+        <h2>Build Your Team</h2>
+        <div >
+            <div className="col-md-4">
+                <h2>Character List</h2>
+            </div>
+            <div className="col-md-4">
+                <h2>Hero List</h2>
+            </div>
+            <div className="col-md-4">
+                <h4>Team Stats</h4>
+            </div>
+        </div>
+    </div>
+```
+
+16. Now load the Characters in to character list
+
+```
+...
+<div className="col-md-4">
+        <h2>Character List</h2>
+        <ul className="list-group">
+        {
+            this.state.characters.map((character, i) => {
+                return (
+                 <li key={character.id} class="list-group-item">
+                        <div className="list-item">{character.name}</div>
+                    </li>
+                )
+            })
+        }
+    </ul>
+</div>
+....
+```
+
+17. Let's create function to add character into `hero` array using character id
+
+```
+...
+
+state = {
+        characters: [],
+        heroes: []
+    }
+...
+
+ addCharactersById(id, i) {
+        this.setState(prevState => ({
+            characters: this.state.characters.filter(function (character) {
+                return character.id !== id
+            }),
+            heroes: [...prevState.heroes, this.state.characters[i]]
+        }))
+    }
+....
+
+```
+
+18. lets create `onClick` on ui list div to call `addCharactersById`
+
+```
+...
+
+<li key={character.id} class="list-group-item">
+    <div className="list-item">{character.name}</div>
+    <div className="lsit-item right-button" onClick={() => this.addCharactersById(character.id, i)}>    +
+    </div>
+</li>
+
+...
+```
+19. add these heros into heros list
+```
+<div className="col-md-4">
+    <h2>Hero List</h2>
+    <ul className="list-group">
+        {
+            this.state.heroes.map((character, i) => {
+                return (
+                    <li key={character.id} className="list-group-item">
+                        <div className="list-item">{character.name}</div>
+                        <div className="lsit-item right-button" onClick={() => this.removeHerosById(character.id, i)}>
+                            x
+                    </div>
+                    </li>
+                )
+            })
+        }
+    </ul>
+</div>
+```
+
+20. Like we did with `addCharactersById`, lets remove heros form hero list using `removeHerosById` function
+
+```
+removeHerosById(id, i) {
+    this.setState(prevState => ({
+        heroes: this.state.heroes.filter(function (character) {
+            return character.id !== id
+        }),
+        characters: [...prevState.characters, this.state.heroes[i]]
+    }))
+}
+
+```
+
+21. lets create 3 function for get stats data into stats list
+
+```
+...
+
+strengthCalculate() {
+    let strength = 0;
+    this.state.heroes.forEach(hero => strength += hero.strength);
+    return strength
+}
+
+intelligenceCalculate() {
+    let intelligence = 0;
+    this.state.heroes.forEach(hero => intelligence += hero.intelligence);
+    return intelligence
+}
+
+speedCalculate() {
+    let speed = 0;
+    this.state.heroes.forEach(hero => speed += hero.speed);
+    return speed
+}
+...
+```
+
+22. Lets bind them with html
+
+```
+...
+
+<div className="col-md-4">
+    <h4>Team Stats</h4>
+    <ul className="list-group">
+        <li className="list-group-item">
+            <b>Overall Strength:</b> {this.strengthCalculate()}
+        </li>
+        <li className="list-group-item">
+            <b>Overall Intelligence:</b> {this.intelligenceCalculate()}
+        </li>
+        <li className="list-group-item">
+            <b>Overall Speed:</b> {this.speedCalculate()}
+        </li>
+    </ul>
+</div>
+
+...
+```
 
 ---
 
