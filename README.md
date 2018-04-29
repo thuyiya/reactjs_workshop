@@ -64,7 +64,7 @@ This repostory is contain every resources file that related to the session that 
 </html>
 ```
 
-3. in the `script.js` get ref for input, button and ul tag by calling DOM and also addEventListener to the button. 
+3. In the `script.js` get ref for input, button and ul tag by calling DOM and also addEventListener to the button. 
 
 
 ```
@@ -137,6 +137,7 @@ Install git if you are not already instaled it
 ---
 
 ## Team Builder App Without Redux
+
 1. remove existing `src`.
 2. Create src folder on root, then create assets, components, styles, data, web-services and index.js in src file root
 3. add this code snipts to the index.js this will render your application to the root div and then run it through terminal by using `npm start`
