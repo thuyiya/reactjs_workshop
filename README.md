@@ -35,8 +35,8 @@ This repostory is contain every resources file that related to the session that 
 
 1. create `index.html` , style.css and script.js file
 2. then add style.css and script.js file into the html file.
+
 ```
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
