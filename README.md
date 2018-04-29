@@ -1,9 +1,29 @@
-#Update Comming Soon
-This project will update withn next week, So keep in touch. 
+# Repository has been updated - 2018/04/29
+
+This repostory is contain every resources file that related to the session that happend University of colombo school of computing - 2018/04/25
 
 
 # Team Building App
  workshop repo
+
+1. 'with-pure-js' folder contain of small application that created using Vanilla Javascript.
+2. 'without-redux' this folder contain the team building app without using any state handling libs.
+3. 'with-redux' same application in above (2.) created using Redux  
+
+# Ref
+
+1. (NodeJS)[https://nodejs.org/en/]
+2. (Eslint)[https://eslint.org/]
+3. (Babel)[https://babeljs.io/]
+4. (Promises)[https://ponyfoo.com/articles/understanding-javascript-async-await]
+5. (Npm stats)[https://www.npmjs.com/npm/the-state-of-javascript-frameworks-2017-part-3-back-end-frameworks]
+6. (Pwa React)[https://preactjs.com/guide/progressive-web-apps]
+7. (Javascript frameworks)[http://www.dotnetcurry.com/javascript/1359/javascript-frameworks-aspnet-mvc-developer]
+8. (Reconciliation)[https://reactjs.org/docs/reconciliation.html]
+9. (Flex)[https://facebook.github.io/flux/docs/in-depth-overview.html]
+
+
+
 
 ## Helper Tools Links 
 
