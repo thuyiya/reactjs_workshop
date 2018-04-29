@@ -340,7 +340,9 @@ state = {
 
 ...
 ```
+
 19. add these heros into heros list
+
 ```
 <div className="col-md-4">
     <h2>Hero List</h2>
@@ -458,11 +460,13 @@ export default characters;
 4. Then import createStore for create a store `import { createStore } from 'redux';`
 5. `const store = createStore(rootReducers);` 
 6. Wrap the provider around the App
+
 ```
 <Provider store={store}>
     <App />
 </Provider>
 ```
+
 7. check the whole state by calling initial state of the store `console.log('store.getState() ', store.getState());`
 
 ### Step 4 - Create actions
@@ -470,6 +474,7 @@ export default characters;
 1. Go to actions and create a `index.js`
 2. Create action constant `export const ADD_CHARACTOR = 'ADD_CHARACTOR';`
 3. export acction by setting type and data
+
 ```
 export function addCharacterById(id) {
     const action = {
@@ -484,6 +489,7 @@ export function addCharacterById(id) {
 
 1. import action to reducer `import { ADD_CHARACTOR } from '../actions'`
 2. update reducer 
+
 ```
 function characters(state = _characters, action) {
     switch (action.type) {
@@ -503,6 +509,7 @@ function characters(state = _characters, action) {
 ### Step 6 - Add second reducer
 
 1. update reducer
+
 ```
 function heroes(state= [], action){
     switch (action.type) {
@@ -513,7 +520,9 @@ function heroes(state= [], action){
     }
 }
 ```
+
 2. For create cracter we going to create helper function 
+
 ```
 function createCharacter(id) {
     let character = _characters.find(c => c.id === id);
@@ -534,8 +543,10 @@ function heroes(state= [], action){
     }
 }
 ```
+
 4. Now we have to bind these two reducers, For that we can use combineReducers form redux `import { combineReducers } from 'redux';`
 5. export the root reducer by binding them
+
 ```
 const rootReducer = combineReducers({
     characters,
@@ -550,6 +561,7 @@ export default rootReducer;
 
 1. Create Separate Component in Components `CharacterList.js`
 2. Export it and add that to App.js `import CharacterList from './CharacterList';`
+
 ```
 import React, { Component } from 'react'
 
@@ -566,12 +578,16 @@ class CharacterList extends Component {
 
 export default CharacterList;
 ```
+
 3. Connect with redux first add connect from react-redux `import { connect } from 'react-redux';`
+
 ```
 ...
 export default connect()(CharacterList);
 ```
+
 4. Map State to props
+
 ```
 ...
 function mapStateToProps(state) {
@@ -588,13 +604,16 @@ export default connect(mapStateToProps, null)(CharacterList);
 1. For that we have to first bind action by importing `import { bindActionCreators } from 'redux';`
 2. And also we have to get the function from actiomn by importing `import { addCharacterById } from '../actions';`
 3. Now bind them connect with component
+
 ```
 function mapDispatchToProps(dispatch){
     return bindActionCreators({addCharacterById}, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterList);
 ```
+
 4. For check it lets call it from them component 
+
 ```
 ...
 {
@@ -610,6 +629,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(CharacterList);
     }
 ...
 ```
+
 4. check the props is comming properly  by adding console.log inside render `console.log('this.props ', this.props)`
 5. short cut, remove mapDispatchToProps from connect and directly add addCharacterById as a object
 
@@ -617,6 +637,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(CharacterList);
 
 1. Add new acction const `export const REMOVE_CHARACTOR = 'REMOVE_CHARACTOR';`
 2. Lets add remove characters function
+
 ```
 export function removeCharacterById(id) {
     const action = {
@@ -626,8 +647,10 @@ export function removeCharacterById(id) {
     return action;
 }
 ```
+
 3. add const to heroes `import { ADD_CHARACTOR, REMOVE_CHARACTOR } from '../actions'`
 4. add new remove case type to heroes function
+
 ```
 ...
 case REMOVE_CHARACTOR: 
@@ -635,10 +658,13 @@ case REMOVE_CHARACTOR:
     return heroes;
 ...
 ```
+
 5. new create add characters case again to `characters_reducer.js`
+
 ```
 case REMOVE_CHARACTOR: 
     characters = [...state, createCharacter(action.id)]
     return characters;
 ```
+
 6. thn connect with HeroList component like we did before!
